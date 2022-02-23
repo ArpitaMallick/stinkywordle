@@ -113,7 +113,7 @@ function completeRow() {
       setTimeout(() => {
         grid = genResultGrid()
         showMessage(
-            'Hey Karthik don't be a sore _____',
+            'Hey karthik don't be a sore ______' ,
           //['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew'][
           //  currentRowIndex
           //],
