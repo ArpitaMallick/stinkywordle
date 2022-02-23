@@ -3,7 +3,6 @@ import { onUnmounted } from 'vue'
 import { getWordOfTheDay, allWords } from './words'
 import Keyboard from './Keyboard.vue'
 import { LetterState } from './types'
-
 // Get word of the day
 //const answer = getWordOfTheDay()
 const answer = $ref('loser')
@@ -16,31 +15,23 @@ const board = $ref(
     }))
   )
 )
-
 // Current active row.
 let currentRowIndex = $ref(0)
 const currentRow = $computed(() => board[currentRowIndex])
-
 // Feedback state: message and shake
 let message = $ref('')
 let grid = $ref('')
 let shakeRowIndex = $ref(-1)
 let success = $ref(false)
-
 // Keep track of revealed letters for the virtual keyboard
 const letterStates: Record<string, LetterState> = $ref({})
-
 // Handle keyboard input.
 let allowInput = true
-
 const onKeyup = (e: KeyboardEvent) => onKey(e.key)
-
 window.addEventListener('keyup', onKeyup)
-
 onUnmounted(() => {
   window.removeEventListener('keyup', onKeyup)
 })
-
 function onKey(key: string) {
   if (!allowInput) return
   if (/^[a-zA-Z]$/.test(key)) {
@@ -51,7 +42,6 @@ function onKey(key: string) {
     completeRow()
   }
 }
-
 function fillTile(letter: string) {
   for (const tile of currentRow) {
     if (!tile.letter) {
@@ -60,7 +50,6 @@ function fillTile(letter: string) {
     }
   }
 }
-
 function clearTile() {
   for (const tile of [...currentRow].reverse()) {
     if (tile.letter) {
@@ -69,7 +58,6 @@ function clearTile() {
     }
   }
 }
-
 function completeRow() {
   if (currentRow.every((tile) => tile.letter)) {
     const guess = currentRow.map((tile) => tile.letter).join('')
@@ -78,7 +66,6 @@ function completeRow() {
       showMessage(`Not in word list`)
       return
     }
-
     const answerLetters: (string | null)[] = answer.split('')
     // first pass: mark correct ones
     currentRow.forEach((tile, i) => {
@@ -106,14 +93,13 @@ function completeRow() {
         }
       }
     })
-
     allowInput = false
     if (currentRow.every((tile) => tile.state === LetterState.CORRECT)) {
       // yay!
       setTimeout(() => {
         grid = genResultGrid()
         showMessage(
-            'Hey karthik don't be a sore ______' ,
+            'Hey Karthik don't be a sore _____ sheesh',
           //['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew'][
           //  currentRowIndex
           //],
@@ -138,7 +124,6 @@ function completeRow() {
     showMessage('Not enough letters')
   }
 }
-
 function showMessage(msg: string, time = 1000) {
   message = msg
   if (time > 0) {
@@ -147,21 +132,18 @@ function showMessage(msg: string, time = 1000) {
     }, time)
   }
 }
-
 function shake() {
   shakeRowIndex = currentRowIndex
   setTimeout(() => {
     shakeRowIndex = -1
   }, 1000)
 }
-
 const icons = {
   [LetterState.CORRECT]: '🟩',
   [LetterState.PRESENT]: '🟨',
   [LetterState.ABSENT]: '⬜',
   [LetterState.INITIAL]: null
 }
-
 function genResultGrid() {
   return board
     .slice(0, currentRowIndex + 1)
@@ -180,7 +162,7 @@ function genResultGrid() {
     </div>
   </Transition>
   <header>
-    <h1>Stinky Wordle For You</h1>
+    <h1>vday special wordle for loser</h1>
   </header>
   <div id="board">
     <div
@@ -289,7 +271,6 @@ function genResultGrid() {
 .tile.revealed .back {
   transform: rotateX(0deg);
 }
-
 @keyframes zoom {
   0% {
     transform: scale(1.1);
@@ -298,11 +279,9 @@ function genResultGrid() {
     transform: scale(1);
   }
 }
-
 .shake {
   animation: shake 0.5s;
 }
-
 @keyframes shake {
   0% {
     transform: translate(1px);
@@ -338,11 +317,9 @@ function genResultGrid() {
     transform: translate(1px);
   }
 }
-
 .jump .tile .back {
   animation: jump 0.5s;
 }
-
 @keyframes jump {
   0% {
     transform: translateY(0px);
@@ -360,7 +337,6 @@ function genResultGrid() {
     transform: translateY(0px);
   }
 }
-
 @media (max-height: 680px) {
   .tile {
     font-size: 3vh;
