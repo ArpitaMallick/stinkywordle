@@ -6,7 +6,7 @@ import { LetterState } from './types'
 
 // Get word of the day
 //const answer = getWordOfTheDay()
-const answer = $ref('cutie')
+const answer = $ref('loser')
 // Board state. Each tile is represented as { letter, state }
 const board = $ref(
   Array.from({ length: 6 }, () =>
@@ -113,7 +113,7 @@ function completeRow() {
       setTimeout(() => {
         grid = genResultGrid()
         showMessage(
-            'Happy Valentine\'s Day, Adithya! You are a _____ pie',
+            'Don't be a sore _____ <3',
           //['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew'][
           //  currentRowIndex
           //],
@@ -180,7 +180,7 @@ function genResultGrid() {
     </div>
   </Transition>
   <header>
-    <h1>vday special wordle for loser</h1>
+    <h1>Stinky Wordle For You</h1>
   </header>
   <div id="board">
     <div
