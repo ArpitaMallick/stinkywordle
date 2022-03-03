@@ -5,7 +5,7 @@ import Keyboard from './Keyboard.vue'
 import { LetterState } from './types'
 // Get word of the day
 //const answer = getWordOfTheDay()
-const answer = $ref('loser')
+const answer = $ref('aashi')
 // Board state. Each tile is represented as { letter, state }
 const board = $ref(
   Array.from({ length: 6 }, () =>
@@ -99,7 +99,7 @@ function completeRow() {
       setTimeout(() => {
         grid = genResultGrid()
         showMessage(
-            'Hey Karthik don\'t be a sore _____ ',
+            'better than arpita',
           //['Genius', 'Magnificent', 'Impressive', 'Splendid', 'Great', 'Phew'][
           //  currentRowIndex
           //],
