@@ -162,7 +162,7 @@ function genResultGrid() {
     </div>
   </Transition>
   <header>
-    <h1>ratio wordle</h1>
+    <h1>NAME WORDLE!!!</h1>
   </header>
   <div id="board">
     <div
